@@ -172,7 +172,7 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2017-10-28T03:51:51.639Z" itemprop="datePublished">
+      <time datetime="2017-10-28T03:56:04.186Z" itemprop="datePublished">
           2017-10-28
       </time>
     
@@ -181,7 +181,7 @@
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<h1 id="scrapy中的两种post请求"><a href="#scrapy中的两种post请求" class="headerlink" title="scrapy中的两种post请求"></a>scrapy中的两种post请求</h1><p>标签（空格分隔）： python scrapy</p>
+      		<p>标签（空格分隔）： python scrapy</p>
 <hr>
 <p>spider文件：</p>
 <h3 id="1-scrapy-FormRequest"><a href="#1-scrapy-FormRequest" class="headerlink" title="1:scrapy.FormRequest"></a>1:scrapy.FormRequest</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">RenrenSpider</span><span class="params">(scrapy.Spider)</span>:</span></div><div class="line">    name = <span class="string">'renren'</span></div><div class="line">    allowed_domains = [<span class="string">'mail.qq.com'</span>]</div><div class="line">    start_urls = [<span class="string">'https://mail.qq.com/cgi-bin/loginpage'</span>]</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">start_requests</span><span class="params">(self)</span>:</span></div><div class="line">        post_data = &#123;</div><div class="line">            <span class="string">'email'</span>: <span class="string">'842666271@qq.com'</span>,</div><div class="line">            <span class="string">'password'</span>: <span class="string">'LIJIANGUODY'</span></div><div class="line">        &#125;</div><div class="line">        <span class="comment"># 构建post请求并发送出去</span></div><div class="line">        <span class="keyword">yield</span> scrapy.FormRequest(self.start_urls[<span class="number">0</span>], formdata=post_data)</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></div><div class="line">        <span class="keyword">with</span> open(<span class="string">'renren.html'</span>, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</div><div class="line">            f.write(response.body)</div><div class="line"></div><div class="line"><span class="comment"># FormRequest：</span></div><div class="line"><span class="comment"># 作用范围：模拟登录，发送post数据获取响应</span></div><div class="line"><span class="comment"># 使用FormRequest提交账号密码登录</span></div></pre></td></tr></table></figure>
